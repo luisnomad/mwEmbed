@@ -923,6 +923,11 @@ mw.KWidgetSupport.prototype = {
 				qp = ( source.src.indexOf('?') === -1) ? '?' : '&';
 				source.src = source.src + qp +  'preferredBitrate=' + preferedBitRate;
 			}
+			// Check for special urls: 
+			if( embedPlayer.getKalturaConfig( '', 'EnableM3u8Wrapper' ) ){
+				source.src = mw.getMwEmbedPath() + 'm3u8wrapper.php' + '?base=' + escape( source.src );
+			}
+			
 			// add any flashvar based playManifest params
 			qp = ( source.src.indexOf('?') === -1) ? '?' : '&';
 			source.src = source.src +  qp + flashvarsPlayMainfestParams;
