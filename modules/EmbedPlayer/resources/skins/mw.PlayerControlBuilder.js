@@ -145,10 +145,6 @@ mw.PlayerControlBuilder.prototype = {
 		// Add the controls to the interface
 		embedPlayer.getInterface().append( $controlBar );
 
-		if ( $.browser.mozilla && parseFloat( $.browser.version ) < 2 ) {
-			embedPlayer.triggerHelper( 'resizeIframeContainer', [ {'height' : embedPlayer.height + $controlBar.height() - 1} ] );
-		}
-
 		// Add the Controls Component
 		this.addControlComponents();
 
@@ -1042,11 +1038,6 @@ mw.PlayerControlBuilder.prototype = {
 		});
 
 		this.addPlayerTouchBindings();
-
-		// Do png fix for ie6
-		if ( $.browser.msie && $.browser.version <= 6 ) {
-			$( '#' + embedPlayer.id + ' .play-btn-large' ).pngFix();
-		}
 
 		this.doVolumeBinding();
 
@@ -2406,7 +2397,7 @@ mw.PlayerControlBuilder.prototype = {
 						$icon.addClass( buttonConfig['class'] );
 					}
 				}
-				if( typeof buttonConfig.style != 'object'){
+				if( typeof buttonConfig.style != 'object' || $.isArray( buttonConfig.style ) ){
 					buttonConfig.style = {};
 				}
 				// update the configured size of the attribution button if we have a specific width configured
@@ -2415,7 +2406,6 @@ mw.PlayerControlBuilder.prototype = {
 				} else {
 					 buttonConfig.style.width = parseInt( this.w ) + 'px';
 				}
-
 				return $( '<div />' )
 						.addClass( 'rButton' )
 						.css({
