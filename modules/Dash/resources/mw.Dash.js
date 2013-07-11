@@ -77,6 +77,7 @@
 			player.attachSource( dashUrl );
 			mw.log("mw.Dash attach source: " + dashUrl );
 			
+			this.embedPlayer.mediaElement.sources = [];
 			this.embedPlayer.mediaElement.selectedSource.src = vid.src;
 			this.embedPlayer.play();
 		},
