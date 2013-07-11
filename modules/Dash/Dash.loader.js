@@ -1,16 +1,7 @@
 ( function( mw, $ ) { "use strict";
 	mw.addKalturaPlugin( ['mw.Dash'], 'dash', function( embedPlayer, callback){
-		var ua = navigator.userAgent;
-		if( /chrome/i.test(ua)) {
-			var uaArray = ua.split(' ');
-			// check chrome browser version: 
-			if( parseInt( uaArray[uaArray.length - 2].substr(7).split('.')[0] ) > 25 ){
-				embedPlayer.peer5 = new mw.Peer5( embedPlayer, callback );
-				return ;
-			}
-		}
-		//if not HTML5 supported, should not get in!
-		//be sure to issue callback if not running plugin:
-		callback();
+		// we do user agent checks inside mw.Dash to be compatible with jsonConfig branch
+		// which largely does away with the 'loader' concept.  
+		embedPlayer.dash = new mw.Dash( embedPlayer, callback );
 	});
 })( window.mw, jQuery );

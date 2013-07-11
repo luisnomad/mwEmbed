@@ -5,13 +5,12 @@
 
 return array (
 	'dash' => array(
-		'description' => 'The Dash JS player ',
+		'description' => 'Support mpeg-dash transport for supporting browsers which support it',
 		'attributes' => array(
-			'peer5libUrl' => array(
-				'doc' => "The URL to Peer5 SaaS",
-				'type' => 'string'
+			'sourceUrl' => array(
+				'doc' => "The DASH manifest URL, default null, if set overrides platform sources",
+				'type' => 'url'
 			),
-
 		)
 	)
 );
