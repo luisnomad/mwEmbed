@@ -18,7 +18,7 @@
 			this.embedPlayer = embedPlayer;
 			
 			// We load dashjs module and its dependencies‎ 
-			mw.load( ['dashjs'], function(){
+			$.getScript( mw.getMwEmbedPath() + 'modules/Dash/dash.js/dash.min.js', function(){
 				// setup player bindings
 				_this.bindPlayer()
 				// continue player build out.
